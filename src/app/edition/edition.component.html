@@ -1,0 +1,20 @@
+<p>
+    <mat-form-field appearance="standard">
+        <mat-label>Titre</mat-label>
+        <input [(ngModel)]="titre" matInput placeholder="Tapez votre titre">
+        <!-- pour le ngModel : crochet = infos entrantes VS parenthese = infos sortantes -->
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Titre de l'article</mat-hint>
+    </mat-form-field>
+</p>
+
+<p>
+    <mat-form-field appearance="fill">
+        <mat-label>Texte</mat-label>
+        <textarea [(ngModel)]="texte" matInput></textarea>
+    </mat-form-field>
+</p>
+
+<p>
+    <button mat-raised-button color="primary" (click)="onClickAjouter()">Ajouter</button>
+</p>

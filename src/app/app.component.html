@@ -1,0 +1,13 @@
+<!-- bouton trouvé sur material.angular.io -->
+<button mat-raised-button color="primary" [routerLink]="['/']" >Accueil</button>
+<button mat-raised-button [routerLink]="['/liste']">Liste</button>
+
+<button mat-raised-button [matMenuTriggerFor]="profil">Profil</button>
+<mat-menu #profil="matMenu">
+  <button mat-menu-item>Inscription</button>
+  <button [routerLink]="['/connexion']" mat-menu-item>Connexion</button>
+</mat-menu>
+
+
+<!-- c'est avec cette commande que angular va aller chercher les components dans app-routing -->
+<router-outlet></router-outlet>
