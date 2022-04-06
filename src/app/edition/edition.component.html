@@ -1,20 +1,32 @@
-<p>
-    <mat-form-field appearance="standard">
-        <mat-label>Titre</mat-label>
-        <input [(ngModel)]="titre" matInput placeholder="Tapez votre titre">
-        <!-- pour le ngModel : crochet = infos entrantes VS parenthese = infos sortantes -->
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Titre de l'article</mat-hint>
-    </mat-form-field>
-</p>
+<form [formGroup] = "formulaireArticle" (ngSubmit)="onSubmit()">
+    <p>
+        <mat-form-field appearance="standard">
+            <mat-label>Titre</mat-label>
+            <input matInput placeholder="Tapez votre titre" formControlName="titre">
+            <!-- pour le ngModel : crochet = infos entrantes dans le composant VS parenthese = infos sortantes du composant -->
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Titre de l'article</mat-hint>
+            <mat-error *ngIf="formulaireArticle.get('titre')?.hasError('required') || formulaireArticle.get('titre')?.hasError('minlength')">Le champ doit comporter 5 caractères au minimum</mat-error>
+            <mat-error *ngIf="formulaireArticle.get('titre')?.hasError('pattern')">Le champ ne doit contenir que des lettres</mat-error>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="standard">
+            <mat-label>Sous-Titre</mat-label>
+            <input matInput placeholder="Entrez un sous-titre" formControlName="sousTitre">
+            <!-- pour le ngModel : crochet = infos entrantes dans le composant VS parenthese = infos sortantes du composant -->
+            <mat-hint>Sous-titre de l'article</mat-hint>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Texte</mat-label>
+            <textarea matInput formControlName="texte"></textarea>
+            <mat-error>Le champ est obligatoire</mat-error>
+        </mat-form-field>
+    </p>
 
-<p>
-    <mat-form-field appearance="fill">
-        <mat-label>Texte</mat-label>
-        <textarea [(ngModel)]="texte" matInput></textarea>
-    </mat-form-field>
-</p>
-
-<p>
-    <button mat-raised-button color="primary" (click)="onClickAjouter()">Ajouter</button>
-</p>
+    <p>
+        <button mat-raised-button color="primary" type="submit">Ajouter</button>
+    </p>
+</form>

@@ -1,4 +1,5 @@
 import { getLocaleEraNames } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,24 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListeComponent implements OnInit {
 
-  public listeArticle = [
-    {
-      titre: "Mon premier article",
-      texte: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quidem quisquam soluta vitae illum, ducimus quasi culpa quas beatae. Alias repellat at quia, consequuntur sed dolore eligendi et fugiat placeat.",
-    },
-    {
-      titre: "Mon second article",
-      texte: "Tu vois, ce n'est pas un simple sport car en vérité, la vérité, il n'y a pas de vérité et c'est très, très beau d'avoir son propre moi-même ! Mais ça, c'est uniquement lié au spirit.",
-    },
-    {
-      titre: "Mon troisième article",
-      texte: "Каждый человек имеет право свободно участвовать в культурной жизни общества, наслаждаться искусством, участвовать в научном прогрессе и пользоваться его благами.",
-    }
-  ]
+  public listeArticle : any = [];
 
-  constructor() { }
+  constructor(private client: HttpClient) { }
 
   ngOnInit(): void {
+    this.client.get("http://localhost/test_json/liste-article.php")
+    .subscribe(listeArticle => this.listeArticle = listeArticle)
   }
 
 }
