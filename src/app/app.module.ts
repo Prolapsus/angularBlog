@@ -17,7 +17,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './securite/token.interceptor';
+import { RechercheComponent } from './recherche/recherche.component';
+import { ArticleComponent } from './article/article.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { HttpClientModule } from '@angular/common/http';
     Page404Component,
     EditionComponent,
     ListeComponent,
-    ConnexionComponent
+    ConnexionComponent,
+    RechercheComponent,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor , multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

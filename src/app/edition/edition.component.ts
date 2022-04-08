@@ -39,16 +39,17 @@ export class EditionComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if(this.formulaireArticle.valid){
+    if(this.formulaireArticle.valid) {
 
-      const optionRequete = {
+      /*const optionRequete = {
         headers: new HttpHeaders({
-          'Acces-Control-Allow-Origin': '*'
+          'Acces-Control-Allow-Origin': '*',
+          'Authorization':'Bearer ' + localStorage.getItem('token')
         })
-      };
-
+      };*/
+      
       this.client
-      .post('http://localhost/test_json/article.php', this.formulaireArticle.value, optionRequete)
+      .post('http://localhost/test_json/article.php', this.formulaireArticle.value)
       .subscribe(resultat => console.log(resultat));
       // console.log(this.formulaireArticle.value); // avec ça on recupère les valeurs du formulaire dans un objet au format JSON
     }

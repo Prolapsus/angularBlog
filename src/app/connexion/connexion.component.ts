@@ -36,7 +36,14 @@ export class ConnexionComponent implements OnInit {
 
       this.client
       .post('http://localhost/test_json/connexion.php', this.formulaireConnexion.value, optionRequete)
-      .subscribe(resultat => console.log(resultat));
+      .subscribe((resultat:any) => {
+        if (resultat.erreur) {
+          alert(resultat.erreur);
+        } else {
+        }
+        console.log(resultat.token),
+        localStorage.setItem("token", resultat.token)
+      });
       // console.log(this.formulaireArticle.value); // avec ça on recupère les valeurs du formulaire dans un objet au format JSON
     }
   }

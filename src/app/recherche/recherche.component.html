@@ -1,0 +1,18 @@
+<form [formGroup] = "formulaireRecherche" (ngSubmit)="onSubmit()">
+    <p>
+        <mat-form-field appearance="standard">
+            <mat-label>Recherche</mat-label>
+            <input matInput placeholder="Exemple : Shiba" formControlName="recherche">
+            <!-- pour le ngModel : crochet = infos entrantes dans le composant VS parenthese = infos sortantes du composant -->
+            <mat-error *ngIf="formulaireRecherche.get('recherche')?.hasError('required')">
+                Champ Obligatoire
+            </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">
+            Rechercher
+        </button>
+    </p>
+</form>
+
+<app-article *ngFor="let articleARechercher of listeArticle" [article]="articleARechercher" couleur="red"></app-article>
